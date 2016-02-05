@@ -883,6 +883,8 @@ function! s:VCSCommit(bang, message)
 		silent 0put ='VCS: ----------------------------------------------------------------------'
 		silent put ='VCS: Please enter log message.  Lines beginning with ''VCS:'' are removed automatically.'
 		silent put ='VCS: To finish the commit, Type <leader>cc (or your own <Plug>VCSCommit mapping)'
+        let test=system("git log --abbrev-commit --decorate --date=relative --format=format:'VCS: %h - %s - %an%d' -5 ") " . expand('%:p'))
+        silent put =test
 
 		if VCSCommandGetOption('VCSCommandCommitOnWrite', 1) == 1
 			setlocal buftype=acwrite
